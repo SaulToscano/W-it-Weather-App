@@ -1,0 +1,50 @@
+version: '1'
+services:
+  backend:
+    container_name: weather-backend
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    ports:
+      - "5002:5002"
+    env_file:
+      - ./back/.env
+    depends_on:
+      - database
+    networks:
+      - w-it-network
+
+  frontend:
+    container_name: weather-frontend
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    ports:
+      - "3001:80"
+    env_file:
+      - /front/.env
+    depends_on:
+      - backend
+    networks:
+      - w-it-network
+
+  database:
+    container_name: weather-database
+    image: postgres:13
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5434:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - w-it-network
+
+volumes:
+  pgdata:
+
+networks:
+  w-it-network:
+    driver: bridge
