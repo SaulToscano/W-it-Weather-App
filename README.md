@@ -25,14 +25,14 @@ Esta aplicación de clima permite a los usuarios buscar información meteorológ
 ```plaintext
 root
 │
-├── backend/                   # Directorio del backend en NestJS
-│   ├── src/
-│   │   ├── modules/           # Módulos de NestJS
+├── back/                      # Directorio del backend en NestJS
+│   ├── src/weather
+│   │   ├── module             # Módulos de NestJS
 │   │   ├── entities/          # Entidades (City y Weather)
-│   │   ├── services/          # Lógica de servicios
-│   │   └── controllers/       # Controladores de API
+│   │   ├── service            # Lógica de servicios
+│   │   └── controller         # Controladores de API
 │   └── ...
-├── frontend/                  # Directorio del frontend en React
+├── front/                  # Directorio del frontend en React
 │   ├── src/
 │   │   ├── components/        # Componentes de React
 │   │   ├── App.js             # Componente principal con el router
